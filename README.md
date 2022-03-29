@@ -1,24 +1,25 @@
-# README
+# プライズ情報横断アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 環境構築手順
 
-Things you may want to cover:
+```
+docker-compose build
 
-* Ruby version
+docker-compose up
 
-* System dependencies
+docker-compose exec web rails db:create
+```
 
-* Configuration
+## デプロイ手順
 
-* Database creation
+```
+heroku container:login
 
-* Database initialization
+heroku container:push web -a prize-information-app
 
-* How to run the test suite
+heroku container:release web
 
-* Services (job queues, cache servers, search engines, etc.)
+heroku addons:create heroku-postgresql:hobby-dev
 
-* Deployment instructions
-
-* ...
+heroku run rails db:migrate
+```
